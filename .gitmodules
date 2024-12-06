@@ -1,0 +1,6 @@
+[submodule "projects/mastodon"]
+	path = projects/mastodon
+	url = https://github.com/mastodon/mastodon.git
+[submodule "projects/chatwoot"]
+	path = projects/chatwoot
+	url = https://github.com/chatwoot/chatwoot.git
