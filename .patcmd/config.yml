@@ -1,3 +1,5 @@
+---
+tasks:
 # Git
 - category: git
   name: submodules
