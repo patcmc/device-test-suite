@@ -48,5 +48,6 @@ patcmd exec project discourse stop --config=./.patcmd/config.yml\
 4. Forem
 
 ```bash
-
+patcmd exec project forem build --config=./.patcmd/config.yml
+patcmd exec project forem start --config=./.patcmd/config.yml
 ```

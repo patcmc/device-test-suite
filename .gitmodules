@@ -7,3 +7,6 @@
 [submodule "projects/discourse"]
 	path = projects/discourse
 	url = git@github.com:discourse/discourse.git
+[submodule "projects/forem"]
+	path = projects/forem
+	url = https://github.com/forem/forem.git

@@ -89,3 +89,17 @@ tasks:
   path: "${PWD}/projects/discourse"
   action: stop
   command: d/shutdown_dev
+
+# Forem
+- category: project
+  name: forem
+  description: Build Forem project
+  path: "${PWD}/projects/forem"
+  action: build
+  command: dip provision
+- category: project
+  name: forem
+  description: Start Forem project
+  path: "${PWD}/projects/forem"
+  action: start
+  command: dip rails s
