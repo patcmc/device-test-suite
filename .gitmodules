@@ -4,3 +4,6 @@
 [submodule "projects/chatwoot"]
 	path = projects/chatwoot
 	url = https://github.com/chatwoot/chatwoot.git
+[submodule "projects/discourse"]
+	path = projects/discourse
+	url = git@github.com:discourse/discourse.git

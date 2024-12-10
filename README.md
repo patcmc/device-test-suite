@@ -32,3 +32,21 @@ patcmd exec project mastodon dev --config=./.patcmd/config.yml
 patcmd exec project chatwoot build --config=./.patcmd/config.yml
 patcmd exec project chatwoot start --config=./.patcmd/config.yml
 ```
+
+3. Discourse
+
+```bash
+# Run for the first time
+patcmd exec project discourse init --config=./.patcmd/config.yml
+
+patcmd exec project discourse boot --config=./.patcmd/config.yml
+patcmd exec project discourse dev --config=./.patcmd/config.yml
+patcmd exec project discourse cli --config=./.patcmd/config.yml
+patcmd exec project discourse stop --config=./.patcmd/config.yml\
+```
+
+4. Forem
+
+```bash
+
+```

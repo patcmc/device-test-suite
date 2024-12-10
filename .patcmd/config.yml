@@ -7,8 +7,6 @@ tasks:
   path: "${PWD}"
   action: update
   command: git submodule update --remote --merge
-  args: []
-  environments: {}
 
 # Mastodon
 - category: project
@@ -17,32 +15,24 @@ tasks:
   path: "${PWD}/projects/mastodon"
   action: start
   command: docker compose -f .devcontainer/compose.yaml up -d
-  args: []
-  environments: {}
 - category: project
   name: mastodon
   description: Setup Mastodon project
   path: "${PWD}/projects/mastodon"
   action: setup
   command: docker compose -f .devcontainer/compose.yaml exec app bin/setup
-  args: []
-  environments: {}
 - category: project
   name: mastodon
   description: Run Dev for Mastodon project
   path: "${PWD}/projects/mastodon"
   action: dev
   command: docker compose -f .devcontainer/compose.yaml exec app bin/dev
-  args: []
-  environments: {}
 - category: project
   name: mastodon
   description: Stop Mastodon project
   path: "${PWD}/projects/mastodon"
   action: stop
   command: docker compose -f .devcontainer/compose.yaml down
-  args: []
-  environments: {}
 
 # Chatwoot
 - category: project
@@ -55,21 +45,47 @@ tasks:
     docker compose build base
     docker compose build
     docker compose run --rm rails bundle exec rails db:chatwoot_prepare
-  args: []
-  environments: {}
 - category: project
   name: chatwoot
   description: Start Chatwoot project
   path: "${PWD}/projects/chatwoot"
   action: start
   command: docker compose up -d
-  args: []
-  environments: {}
 - category: project
   name: chatwoot
   description: Stop Chatwoot project
   path: "${PWD}/projects/chatwoot"
   action: stop
   command: docker compose down
-  args: []
-  environments: {}
+
+# Discourse
+- category: project
+  name: discourse
+  description: Init Discourse project
+  path: "${PWD}/projects/discourse"
+  action: init
+  command: d/boot_dev --init
+- category: project
+  name: discourse
+  description: Run boot for Discourse project
+  path: "${PWD}/projects/discourse"
+  action: boot
+  command: d/boot_dev
+- category: project
+  name: discourse
+  description: Run dev for Discourse project
+  path: "${PWD}/projects/discourse"
+  action: dev
+  command: d/rails s
+- category: project
+  name: discourse
+  description: A separate terminal for Discourse project
+  path: "${PWD}/projects/discourse"
+  action: cli
+  command: d/ember-cli
+- category: project
+  name: discourse
+  description: Stop Discourse project
+  path: "${PWD}/projects/discourse"
+  action: stop
+  command: d/shutdown_dev
