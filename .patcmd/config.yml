@@ -2,11 +2,25 @@
 tasks:
 # Git
 - category: git
-  name: submodules
+  name: submodule
   description: Update submodules
   path: "${PWD}"
   action: update
-  command: git submodule update --remote --merge
+  command: git submodule update --remote
+
+# Containers
+- category: collection
+  name: container
+  description: Start container collection
+  path: "${PWD}/containers"
+  action: start
+  command: docker compose up -d
+- category: collection
+  name: container
+  description: Stop container collection
+  path: "${PWD}/containers"
+  action: stop
+  command: docker compose down
 
 # Mastodon
 - category: project

@@ -1,0 +1,93 @@
+version: '3.8'
+
+services:
+  # === Postgres Instances ===
+  postgres_13:
+    image: postgres:13-alpine
+
+  postgres_14:
+    image: postgres:14-alpine
+  
+  postgres_16:
+    image: postgres:16-alpine
+
+  postgres_latest:
+    image: postgres:latest
+
+  # === MySQL Instances ===
+  mysql_56:
+    image: mysql:5.6
+  
+  mysql_57:
+    image: mysql:5.7
+
+  mysql_80:
+    image: mysql:8.0
+
+  mysql_latest:
+    image: mysql:latest
+
+  # === Redis Instances ===
+  redis_1:
+    image: redis:alpine
+
+  redis_2:
+    image: redis:alpine
+
+  redis_3:
+    image: redis:alpine
+  
+  redis_4:
+    image: redis:alpine
+
+  # === MongoDB Instances ===
+  mongodb_44:
+    image: mongo:4.4
+
+  mongodb_50:
+    image: mongo:5.0
+
+  mongodb_60:
+    image: mongo:6.0
+
+  mongodb_latest:
+    image: mongo:latest
+
+  # === Mailhog Instances ===
+  mailhog_1:
+    image: mailhog/mailhog
+
+  mailhog_2:
+    image: mailhog/mailhog
+
+  # === pgAdmin Instances ===
+  pgadmin_1:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+
+  # === Redis Tools ===
+  redis_commander_1:
+    image: rediscommander/redis-commander:latest
+
+  redis_insight_1:
+    image: redislabs/redisinsight:latest
+
+  # === Elasticsearch ===
+  elasticsearch_1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    environment:
+      - discovery.type=signle-note
+      - ES_JAVA_OPTS="-Xms256m -Xmx256m"
+
+  # === Memcached Instances ===
+  memcached_1:
+    image: memcached:alpine
+
+  # === RabbitMQ Instances ===
+  rabbitmq_1:
+    image: rabbitmq:3-management-alpine
+
+  rabbitmq_2:
+    image: rabbitmq:3-management-alpine
