@@ -1,31 +1,47 @@
-version: '3.8'
+version: '3'
 
 services:
   # === Postgres Instances ===
   postgres_13:
     image: postgres:13-alpine
+    environment:
+      - POSTGRES_PASSWORD=password
 
   postgres_14:
     image: postgres:14-alpine
+    environment:
+      - POSTGRES_PASSWORD=password
   
   postgres_16:
     image: postgres:16-alpine
+    environment:
+      - POSTGRES_PASSWORD=password
 
   postgres_latest:
     image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=password
 
   # === MySQL Instances ===
   mysql_56:
     image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
   
   mysql_57:
     image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
 
   mysql_80:
     image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
 
   mysql_latest:
     image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
 
   # === Redis Instances ===
   redis_1:
@@ -76,10 +92,47 @@ services:
 
   # === Elasticsearch ===
   elasticsearch_1:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.16.1
     environment:
-      - discovery.type=signle-note
-      - ES_JAVA_OPTS="-Xms256m -Xmx256m"
+      - discovery.type=signle-node
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    cap_add:
+      - IPC_LOCK
+
+  kibana_1:
+    image: docker.elastic.co/kibana/kibana:8.16.1
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch_1:9200
+      - xpack.security.enabled=false
+    depends_on:
+      - elasticsearch_1
+
+  logstash_1:
+    image: docker.elastic.co/logstash/logstash:8.16.1
+
+  # # === Opensearch ===
+  opensearch_1:
+    image: opensearchproject/opensearch:2.1.0
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=true
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+  
+  opensearch_dashboards:
+    image: opensearchproject/opensearch-dashboards:2.1.0
 
   # === Memcached Instances ===
   memcached_1:
@@ -91,3 +144,13 @@ services:
 
   rabbitmq_2:
     image: rabbitmq:3-management-alpine
+
+  # === Prometheus Instances ===
+  prometheus_1:
+    image: prom/prometheus:latest
+
+  # === Grafana Instances ===
+  grafana_1:
+    image: grafana/grafana:latest
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=password
